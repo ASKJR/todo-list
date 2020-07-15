@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const title = ({ children }) => {
   return (
-    <Typography variant="h3" gutterBottom>
+    <Typography variant="h4" gutterBottom>
       {children}
     </Typography>
   );

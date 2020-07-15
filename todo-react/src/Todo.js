@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import Tittle from './components/Title';
 import Logo from './components/Logo';
+import Input from './components/Input';
+import List from './components/List/List';
 
 const todo = () => {
   return (
@@ -20,10 +22,10 @@ const todo = () => {
         <Logo />
       </Grid>
       <Grid item xs={12}>
-        <h1>Input</h1>
+        <Input />
       </Grid>
       <Grid item xs={12}>
-        <h1>List</h1>
+        <List />
       </Grid>
     </Grid>
   );

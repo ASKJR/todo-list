@@ -4,7 +4,7 @@ import Logo from '../assets/images/logo.png';
 const logo = () => {
   return (
     <div>
-      <img src={Logo} alt="Logo" />
+      <img src={Logo} alt="Logo" style={{ height: '110px' }} />
     </div>
   );
 };
