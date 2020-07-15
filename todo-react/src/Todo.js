@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 import Tittle from './components/Title';
 import Logo from './components/Logo';
 import Input from './components/Input';
-import List from './components/List/List';
+import TodoList from './components/List/TodoList';
 
-const todo = () => {
+const Todo = () => {
+  const [list, setList] = useState([]);
+
+  const addItem = (item) => {
+    setList((prevState) => [...prevState, { id: new Date().getTime(), item }]);
+  };
+
+  const removeItem = (id) => {
+    setList(list.filter((item) => item.id !== id));
+  };
+
   return (
     <Grid
       container
@@ -22,13 +32,13 @@ const todo = () => {
         <Logo />
       </Grid>
       <Grid item xs={12}>
-        <Input />
+        <Input addItem={addItem} />
       </Grid>
       <Grid item xs={12}>
-        <List />
+        <TodoList items={list} removeItem={removeItem} />
       </Grid>
     </Grid>
   );
 };
 
-export default todo;
+export default Todo;
