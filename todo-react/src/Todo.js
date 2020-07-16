@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import Tittle from './components/Title';
 import Logo from './components/Logo';
@@ -8,13 +8,33 @@ import TodoList from './components/List/TodoList';
 const Todo = () => {
   const [list, setList] = useState([]);
 
+  useEffect(() => {
+    const storageList = JSON.parse(localStorage.getItem('reactTodoList'));
+    if (storageList) {
+      setList(storageList);
+    }
+  }, []);
+
   const addItem = (item) => {
-    setList((prevState) => [...prevState, { id: new Date().getTime(), item }]);
+    const newItem = {
+      id: new Date().getTime(),
+      description: item,
+      checked: false,
+    };
+    setList((prevState) => [...prevState, newItem]);
+    localStorage.setItem('reactTodoList', JSON.stringify([...list, newItem]));
   };
 
   const removeItem = (id) => {
-    setList(list.filter((item) => item.id !== id));
+    const updatedList = list.filter((item) => item.id !== id);
+    setList(updatedList);
+    localStorage.setItem('reactTodoList', JSON.stringify(updatedList));
   };
+
+  let todoList = null;
+  if (list.length > 0) {
+    todoList = <TodoList items={list} removeItem={removeItem} />;
+  }
 
   return (
     <Grid
@@ -35,7 +55,7 @@ const Todo = () => {
         <Input addItem={addItem} />
       </Grid>
       <Grid item xs={12}>
-        <TodoList items={list} removeItem={removeItem} />
+        {todoList}
       </Grid>
     </Grid>
   );
