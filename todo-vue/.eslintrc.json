@@ -4,8 +4,10 @@
     "es6": true
   },
   "extends": [
-    "plugin:vue/essential",
+    "plugin:vue/recommended",
     "airbnb-base",
+    "prettier/vue",
+    "eslint:recommended",
     "plugin:prettier/recommended"
   ],
   "globals": {
@@ -16,6 +18,17 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["vue"],
-  "rules": {}
+  "plugins": ["prettier"],
+  "rules": {
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": {
+          "void": "always",
+          "normal": "never",
+          "component": "any"
+        }
+      }
+    ]
+  }
 }
