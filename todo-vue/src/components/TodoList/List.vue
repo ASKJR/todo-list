@@ -3,7 +3,11 @@
     <v-card max-width="360" class="mx-auto">
       <v-list flat subheader>
         <v-list-item-group v-model="settings" multiple>
-          <app-list-item v-for="n in 3" :key="n"></app-list-item>
+          <app-list-item
+            v-for="task in tasks"
+            :key="task.id"
+            :task="task.description"
+          ></app-list-item>
         </v-list-item-group>
       </v-list>
     </v-card>
@@ -16,6 +20,14 @@ import Item from './Item.vue';
 export default {
   components: {
     appListItem: Item,
+  },
+  props: {
+    tasks: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data: () => ({
     settings: [],

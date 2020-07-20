@@ -3,8 +3,8 @@
     <v-row class="text-center pt-5">
       <app-title title="Vue To-Do list"></app-title>
       <app-logo></app-logo>
-      <app-input></app-input>
-      <app-list></app-list>
+      <app-input @newTask="addTask"></app-input>
+      <app-list :tasks="tasks"></app-list>
     </v-row>
   </v-container>
 </template>
@@ -21,6 +21,17 @@ export default {
     appTitle: Title,
     appInput: Input,
     appList: List,
+  },
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  methods: {
+    addTask(task) {
+      const id = new Date().getTime();
+      this.tasks.push({ id, description: task });
+    },
   },
 };
 </script>

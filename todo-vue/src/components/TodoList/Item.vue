@@ -6,7 +6,7 @@
       </v-list-item-action>
 
       <v-list-item-content class="text-body-2" :class="{ checkedTask: active }">
-        UFPR
+        {{ task }}
       </v-list-item-content>
 
       <v-list-item-icon>
@@ -17,7 +17,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    task: {
+      type: String,
+      default: '',
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
