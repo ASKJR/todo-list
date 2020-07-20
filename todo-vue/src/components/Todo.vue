@@ -4,7 +4,7 @@
       <app-title title="Vue To-Do list"></app-title>
       <app-logo></app-logo>
       <app-input @newTask="addTask"></app-input>
-      <app-list :tasks="tasks"></app-list>
+      <app-list :tasks="tasks" @removeTask="removeTask"></app-list>
     </v-row>
   </v-container>
 </template>
@@ -31,6 +31,12 @@ export default {
     addTask(task) {
       const id = new Date().getTime();
       this.tasks.push({ id, description: task });
+    },
+    removeTask(id) {
+      const index = this.tasks.findIndex((task) => task.id === id);
+      if (index >= 0) {
+        this.tasks.splice(index, 1);
+      }
     },
   },
 };

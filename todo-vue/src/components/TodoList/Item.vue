@@ -6,10 +6,10 @@
       </v-list-item-action>
 
       <v-list-item-content class="text-body-2" :class="{ checkedTask: active }">
-        {{ task }}
+        {{ task.description }}
       </v-list-item-content>
 
-      <v-list-item-icon>
+      <v-list-item-icon @click="removeTaskHandler">
         <v-icon color="red">mdi-close-circle</v-icon>
       </v-list-item-icon>
     </template>
@@ -20,9 +20,16 @@
 export default {
   props: {
     task: {
-      type: String,
-      default: '',
+      type: Object,
+      default() {
+        return {};
+      },
       required: true,
+    },
+  },
+  methods: {
+    removeTaskHandler() {
+      this.$emit('removeTask', this.task.id);
     },
   },
 };

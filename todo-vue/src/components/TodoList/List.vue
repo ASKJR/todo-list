@@ -6,7 +6,8 @@
           <app-list-item
             v-for="task in tasks"
             :key="task.id"
-            :task="task.description"
+            :task="task"
+            v-on="$listeners"
           ></app-list-item>
         </v-list-item-group>
       </v-list>
