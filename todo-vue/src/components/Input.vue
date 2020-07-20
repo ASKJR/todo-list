@@ -5,7 +5,7 @@
         <v-text-field label="Type a new task"></v-text-field>
       </div>
       <div class="input-btn">
-        <v-btn small color="primary" depressed>ADD</v-btn>
+        <v-btn small color="primary" depressed min-width="63">ADD</v-btn>
       </div>
     </div>
   </v-col>
@@ -24,8 +24,5 @@ export default {};
 .input-btn {
   margin-bottom: 20px;
   align-self: center;
-}
-.input-btn button {
-  min-width: 61px;
 }
 </style>

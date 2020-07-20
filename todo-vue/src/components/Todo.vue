@@ -4,6 +4,7 @@
       <app-title title="Vue To-Do list"></app-title>
       <app-logo></app-logo>
       <app-input></app-input>
+      <app-list></app-list>
     </v-row>
   </v-container>
 </template>
@@ -12,12 +13,14 @@
 import Logo from './Logo.vue';
 import Title from './Title.vue';
 import Input from './Input.vue';
+import List from './TodoList/List.vue';
 
 export default {
   components: {
     appLogo: Logo,
     appTitle: Title,
     appInput: Input,
+    appList: List,
   },
 };
 </script>
