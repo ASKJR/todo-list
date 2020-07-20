@@ -30,7 +30,7 @@ export default {
   methods: {
     addTask(task) {
       const id = new Date().getTime();
-      this.tasks.push({ id, description: task });
+      this.tasks.push({ id, description: task, checked: false });
     },
     removeTask(id) {
       const index = this.tasks.findIndex((task) => task.id === id);
