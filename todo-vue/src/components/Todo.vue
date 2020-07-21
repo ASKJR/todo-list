@@ -27,15 +27,20 @@ export default {
       tasks: [],
     };
   },
+  created() {
+    this.tasks = [...JSON.parse(localStorage.getItem('vueTodoList'))];
+  },
   methods: {
     addTask(task) {
       const id = new Date().getTime();
       this.tasks.push({ id, description: task, checked: false });
+      localStorage.setItem('vueTodoList', JSON.stringify([...this.tasks]));
     },
     removeTask(id) {
       const index = this.tasks.findIndex((task) => task.id === id);
       if (index >= 0) {
         this.tasks.splice(index, 1);
+        localStorage.setItem('vueTodoList', JSON.stringify([...this.tasks]));
       }
     },
   },

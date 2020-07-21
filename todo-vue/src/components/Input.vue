@@ -39,6 +39,7 @@ export default {
         this.error = false;
       } else {
         this.error = true;
+        this.task = '';
       }
     },
   },
