@@ -1,25 +1,27 @@
 <template>
   <v-col cols="12">
-    <div class="input-box">
-      <div class="input-task">
-        <v-text-field
-          v-model="task"
-          label="Type a new task"
-          :error="error"
-          @input="error = false"
-        ></v-text-field>
+    <form @submit.prevent="newTaskHandler">
+      <div class="input-box">
+        <div class="input-task">
+          <v-text-field
+            v-model="task"
+            label="Type a new task"
+            :error="error"
+            @input="error = false"
+          ></v-text-field>
+        </div>
+        <div class="input-btn">
+          <v-btn
+            small
+            color="primary"
+            depressed
+            min-width="63"
+            @click="newTaskHandler"
+            >ADD</v-btn
+          >
+        </div>
       </div>
-      <div class="input-btn">
-        <v-btn
-          small
-          color="primary"
-          depressed
-          min-width="63"
-          @click="newTaskHandler"
-          >ADD</v-btn
-        >
-      </div>
-    </div>
+    </form>
   </v-col>
 </template>
 
