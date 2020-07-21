@@ -3,12 +3,14 @@
     <v-card max-width="360" class="mx-auto">
       <v-list flat subheader>
         <v-list-item-group v-model="settings" multiple>
-          <app-list-item
-            v-for="task in tasks"
-            :key="task.id"
-            :task="task"
-            v-on="$listeners"
-          ></app-list-item>
+          <transition-group name="list" tag="div">
+            <app-list-item
+              v-for="task in tasks"
+              :key="task.id"
+              :task="task"
+              v-on="$listeners"
+            ></app-list-item>
+          </transition-group>
         </v-list-item-group>
       </v-list>
     </v-card>
@@ -60,4 +62,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>
