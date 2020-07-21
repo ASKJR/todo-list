@@ -1,5 +1,5 @@
 # todo-list
-Developed the same todo-list in React and Vue as a front-end challenge.
+<i>Developed the same todo-list in React and Vue as a front-end challenge.</i> <br><br>
 ![Alt text](todo.png "Todo")
 
 # todo-react
