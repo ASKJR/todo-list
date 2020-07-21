@@ -1,8 +1,13 @@
 <template>
-  <v-list-item @click="updateCheck">
-    <template v-slot:default="{ active }">
+  <v-list-item :value="task.id" @click="updateCheck">
+    <template v-slot:default="{ active, toggle }">
       <v-list-item-action>
-        <v-checkbox :input-value="active" color="error"></v-checkbox>
+        <v-checkbox
+          :input-value="active"
+          :true-value="task.id"
+          color="error"
+          @click="toggle"
+        ></v-checkbox>
       </v-list-item-action>
 
       <v-list-item-content class="text-body-2" :class="{ checkedTask: active }">
@@ -26,16 +31,13 @@ export default {
       },
       required: true,
     },
-    index: {
-      type: Number,
-      default: null,
-    },
   },
   methods: {
     removeTaskHandler() {
-      this.$emit('removeTask', { id: this.task.id, index: this.index });
+      this.$emit('removeTask', this.task.id);
     },
     updateCheck() {
+      this.task.checked = !this.task.checked;
       const updatedStorage = JSON.parse(
         localStorage.getItem('vueTodoList')
       ).map((item) => {

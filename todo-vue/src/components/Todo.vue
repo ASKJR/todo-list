@@ -28,7 +28,10 @@ export default {
     };
   },
   created() {
-    this.tasks = [...JSON.parse(localStorage.getItem('vueTodoList'))];
+    const storageTasks = JSON.parse(localStorage.getItem('vueTodoList'));
+    if (storageTasks) {
+      this.tasks = [...storageTasks];
+    }
   },
   methods: {
     addTask(task) {

@@ -4,11 +4,10 @@
       <v-list flat subheader>
         <v-list-item-group v-model="settings" multiple>
           <app-list-item
-            v-for="(task, index) in tasks"
+            v-for="task in tasks"
             :key="task.id"
             :task="task"
-            :index="index"
-            @removeTask="beforeRemoveTask"
+            v-on="$listeners"
           ></app-list-item>
         </v-list-item-group>
       </v-list>
@@ -36,20 +35,26 @@ export default {
       settings: [],
     };
   },
+  watch: {
+    tasks() {
+      this.setCheckBoxStates();
+    },
+  },
   created() {
-    const storage = JSON.parse(localStorage.getItem('vueTodoList'));
-    const checkedState = [];
-    storage.forEach((task, index) => {
-      if (task.checked) {
-        checkedState.push(index);
-      }
-    });
-    this.settings = checkedState;
+    this.setCheckBoxStates();
   },
   methods: {
-    beforeRemoveTask({ id, index }) {
-      this.$emit('removeTask', id);
-      this.settings = this.settings.filter((ind) => ind !== index);
+    setCheckBoxStates() {
+      const storage = JSON.parse(localStorage.getItem('vueTodoList'));
+      const checkedState = [];
+      if (storage) {
+        storage.forEach((task) => {
+          if (task.checked) {
+            checkedState.push(task.id);
+          }
+        });
+        this.settings = checkedState;
+      }
     },
   },
 };
